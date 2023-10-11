@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Comercios en {{ city.name_city }}
+{% endblock %}
+
+{% block content %}
+
+<section class="section-padding">
+    <div class="container">
+     <h2>Elija una categoria</h2>
+     <hr>
+        <div class="row">
+            {% for cat in categories %}
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- artículo -->
+                    <article class="post-grid mb-5">
+                       
+                        <div class="post-content-grid">
+
+                            <h3 class="post-title mt-1"><a href="{% url 'shops:city_category' city_id=city.id categoria_id=cat.id %}">{{cat.name_cat}}</a></h3>
+                                    
+                        </div>
+                    </article>
+                    <!-- fin del artículo -->
+                </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+ <!--footer start-->
+    <footer class="footer-section bg-grey">
+        <div class="instagram-photo-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4 class="text-center">Tu opinion nos importa</h4>
+                    </div>
+                </div>
+
+                <div class="row no-gutters" id="instafeed">
+
+                </div>
+            </div>
+        </div>
+        </div>
+                <div class="col-md-12 text-center">
+                    <p class="copyright">© Copyright 2019 - Revolve. All Rights Reserved. Distribution <a
+                            class="text-white" href="https://themewagon.com">ThemeWagon.</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+{% endblock %}

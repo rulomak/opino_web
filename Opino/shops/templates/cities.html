@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Ciudades de {{ country }}
+{% endblock %}
+
+{% block content %}
+
+<section class="section-padding">
+    <div class="container">
+        <h2>Ciudades de {{ country }}</h2>
+        <hr>
+        <div class="row">
+            {% for city in cities %}
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- artículo -->
+                    <article class="post-grid mb-5">
+                       
+                        <div class="post-content-grid">
+
+                            <h3 class="post-title mt-1"><a href="{% url 'shops:choose_category' city_id=city.id %}">{{city.name_city}}</a></h3>
+                                    
+                        </div>
+                    </article>
+                    <!-- fin del artículo -->
+                </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

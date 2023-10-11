@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{post.nombre}}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-lg-6 col-md-6 col-sm-6">
+    <!-- articulo-->
+    <article class="post-grid mb-5 ">
+        
+        <div class="row align-items-center"> <!-- Agregamos la clase align-items-center aquí -->
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <a class="post-thumb mb-4 d-block" >
+                    <img src="{{post.imagen.url}}" alt="" class="img-fluid w-100">
+                </a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 "> 
+                <div class="post-content-grid">
+                    <div class="label-date">
+                        <span class="day">{{ post.puntuacion }}</span>
+                        <span class="month text-uppercase">Punt.</span>
+                    </div>
+                
+                    <h1 class="post-title mt-1">{{post.nombre}}</h1>
+                    <h3>en {{post.ciudad}}</h3>
+                    <p><b>Direccion:</b> {{post.direccion}}</p>
+                    <p><b>Telefono:</b> {{post.telefono}}</p>
+                    <p><b>WEB:</b> {{post.web}}</p>
+                    <p><b>Ciudad:</b> {{post.ciudad}}</p>
+                    
+                    <h4>Puntuacion promedio: {{ post.puntuacion }}</h4>
+                    
+
+                </div>
+            </div>
+        </div>
+        <h3>Por favor, califique a {{post.nombre}}:</h3>
+             <div class="button-container">
+        <button class="rating-button" onclick="mostrarAgradecimiento()">1* Muy Malo</button>
+        <button class="rating-button" onclick="mostrarAgradecimiento()">2* Malo</button>
+        <button class="rating-button" onclick="mostrarAgradecimiento()">3* Regular</button>
+        <button class="rating-button" onclick="mostrarAgradecimiento()">4* Bueno</button>
+        <button class="rating-button" onclick="mostrarAgradecimiento()">5* Muy Bueno</button>
+    </div>
+
+    <div class="thank-you-message" id="gracias-mensaje">¡Gracias por tu calificación!</div>
+
+    <script>
+        function mostrarAgradecimiento() {
+            // Mostrar el mensaje de agradecimiento
+            document.getElementById('gracias-mensaje').style.display = 'block';
+
+            // Desactivar los botones después de hacer clic
+            var buttons = document.querySelectorAll('.rating-button');
+            buttons.forEach(function(button) {
+                button.disabled = true;
+            });
+        }
+    </script>
+
+
+    </article>
+
+  
+
+</div>
+
+
+<h4 class="text-center">Tu opinion nos importa</h4>
+<h4 class="text-center">Opiniones de {{post.nombre}}</h4>
+
+{% endblock %}
+
